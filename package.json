@@ -1,8 +1,8 @@
 {
   "name": "holdmyui",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "description": "A react component to hold the user to interact with the interface while loading data in background or do some work",
-  "author": "",
+  "author": "reznil",
   "license": "MIT",
   "repository": "/holdmyui",
   "main": "dist/index.js",
@@ -51,6 +51,8 @@
     "dist"
   ],
   "dependencies": {
+    "markdown-it": "^10.0.0",
+    "markdown-it-emoji": "1.4.0",
     "style-it": "^2.1.4"
   }
 }

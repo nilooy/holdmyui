@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="assets/style.css?t=90051322">
+    <script src="assets/script.js?t=93f1a66c"></script>
+    <title>holdmyui ✋</title>
+    <meta name="viewport" content="width=device-width">
+  </head>
+  <body class="-menu-visible">
+    <div class="doc-layout">
+      <div class="toggle menu-toggle js-menu-toggle"></div>
+      <div class="menu toc-menu">
+        <ul>
+          <li class="menu-item -level-0 -parent">
+            <ul class="submenu">
+              <li class="menu-item -level-1"><a class="link title -active link-index" href="index.html">holdmyui ✋</a>
+              </li>
+              <li class="menu-item -level-1"><a class="link title link-install" href="#install">Install</a>
+              </li>
+              <li class="menu-item -level-1"><a class="link title link-usage" href="#usage">Usage</a>
+              </li>
+              <li class="menu-item -level-1"><a class="link title link-license" href="#license">License</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="body page-index">
+        <div class="header-nav">
+          <div class="right"><a class="iconlink" href="https://github.com/reznil/holdmyui" data-title="reznil/holdmyui">
+              <!-- span.title Open in GitHub--><span class="icon -github"></span></a>
+          </div>
+        </div>
+        <div class="markdown-body"><h1 id="holdmyui">holdmyui &#x270B;</h1>
+<blockquote>
+<p>A react component to hold the user to interact with the interface while loading data in background or do some work</p>
+</blockquote>
+<p><a href="https://www.npmjs.com/package/holdmyui"><img src="https://img.shields.io/npm/v/holdmyui.svg" alt="NPM"></a> <a href="https://standardjs.com"><img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg" alt="JavaScript Style Guide"></a></p>
+<h2 id="install">Install</h2>
+<pre><code class="lang-bash">npm install --save holdmyui
+</code></pre>
+<h2 id="usage">Usage</h2>
+<pre><code class="lang-jsx"><span class="pl-k">import</span> React, { Component } <span class="pl-k">from</span> <span class="pl-s">&quot;react&quot;</span>;
+
+<span class="pl-k">import</span> HoldMyUi <span class="pl-k">from</span> <span class="pl-s">&quot;holdmyui&quot;</span>;
+
+<span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">Example</span> <span class="pl-k">extends</span> <span class="pl-ent">Component</span> </span>{
+  <span class="pl-c">//Need to pass a state as a &apos;when&apos; prop in HoldMyUi Component</span>
+
+  state = { <span class="hljs-attr">isLoading</span>: <span class="pl-c1">false</span> };
+
+  componentDidMount() {
+    <span class="pl-k">this</span>.setState({ <span class="hljs-attr">isLoading</span>: <span class="pl-c1">true</span> });
+    i;
+    setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+      <span class="pl-k">this</span>.setState({ <span class="hljs-attr">isLoading</span>: <span class="pl-c1">false</span> });
+    }, <span class="hljs-number">3000</span>);
+  }
+
+  render() {
+    <span class="pl-k">return</span> (
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">HoldMyUi</span> <span class="hljs-attr">when</span>=<span class="pl-s">{isLoading}</span> <span class="hljs-attr">preloader</span>=<span class="pl-s">&quot;ring&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Contents.....<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">HoldMyUi</span>&gt;</span></span>
+    );
+  }
+}
+</code></pre>
+<h2 id="license">License</h2>
+<p>MIT &#xA9; <a href="https://github.com/"></a></p>
+
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

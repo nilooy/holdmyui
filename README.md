@@ -1,4 +1,4 @@
-# holdmyui
+# holdmyui ✋
 
 > A react component to hold the user to interact with the interface while loading data in background or do some work
 
@@ -13,15 +13,29 @@ npm install --save holdmyui
 ## Usage
 
 ```jsx
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
-import MyComponent from 'holdmyui'
+import HoldMyUi from "holdmyui";
 
 class Example extends Component {
-  render () {
+  //Need to pass a state as a 'when' prop in HoldMyUi Component
+
+  state = { isLoading: false };
+
+  componentDidMount() {
+    this.setState({ isLoading: true });
+    i;
+    setTimeout(() => {
+      this.setState({ isLoading: false });
+    }, 3000);
+  }
+
+  render() {
     return (
-      <MyComponent />
-    )
+      <HoldMyUi when={isLoading} preloader="ring">
+        <p>Contents.....</p>
+      </HoldMyUi>
+    );
   }
 }
 ```
