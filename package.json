@@ -1,10 +1,10 @@
 {
   "name": "holdmyui",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A react component to hold the user to interact with the interface while loading data in background or do some work",
   "author": "reznil",
   "license": "MIT",
-  "repository": "/holdmyui",
+  "repository": "https://github.com/reznil/holdmyui",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.es.js",
@@ -54,5 +54,12 @@
     "markdown-it": "^10.0.0",
     "markdown-it-emoji": "1.4.0",
     "style-it": "^2.1.4"
-  }
+  },
+  "keywords": [
+    "react-hold-content-while-loading",
+    "react-hold-ui",
+    "blockui-alternative",
+    "blockui-while-load",
+    "preloader"
+  ]
 }
