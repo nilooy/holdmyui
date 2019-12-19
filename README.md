@@ -1,4 +1,4 @@
-# holdmyui
+# holdmyui :raised_hand:
 
 > A react component to hold the user to interact with the interface while loading data in background or do some work
 
