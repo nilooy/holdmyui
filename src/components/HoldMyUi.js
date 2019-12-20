@@ -8,8 +8,8 @@ class HoldMyUi extends React.Component {
     this.when = this.props.when;
     this.containerClass = this.props.containerClass;
     this.holderClass = this.props.holderClass;
-    this.children = this.props.children;
     this.preloader = this.props.preloader;
+    this.disablePreloader = this.props.disablePreloader;
 
     this.transition = this.props.transition || ".7s";
     this.color = this.props.color || "#000";
@@ -108,9 +108,9 @@ class HoldMyUi extends React.Component {
             opacity: this.state.shouldHide ? this.opacity : 0
           }}
         >
-          {this.preloaderContainer()}
+          {!this.disablePreloader && this.preloaderContainer()}
         </div>
-        {this.children}
+        {this.props.children}
       </div>
     );
   }
