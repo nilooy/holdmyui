@@ -1,49 +1,74 @@
 import React, { Component } from "react";
-
 import HoldMyUi from "holdmyui";
+import ContentBox from "./components/ContentBox";
+import Sidebar from "./components/Sidebar";
+import CodeBlock from "./components/CodeBlock";
 
 export default class App extends Component {
+  constructor() {
+    super();
+    this.handleChange = this.handleChange.bind(this);
+  }
+
   state = {
-    change: true
+    loading: true,
+    preloader: "Ring",
+    color: "#000000",
+    bgColor: "#ffffff",
+    opacity: "70",
+    preloaderTop: "40"
   };
+
+  handleChange(event) {
+    const elem = event.target;
+
+    const value = event.hex
+      ? event.hex
+      : elem.type === "checkbox"
+      ? elem.checked
+      : elem.value;
+
+    const name = event.hex ? event.name : event.target.name;
+
+    this.setState({
+      [name]: value
+    });
+  }
 
   render() {
     return (
       <div>
-        <button
-          style={{ position: "fixed", zIndex: 9999999 }}
-          onClick={() => this.setState({ change: !this.state.change })}
-        >
-          Toggle
-        </button>
+        <Sidebar
+          opacity={(this.state.opacity * 0.01).toFixed(1)}
+          color={this.state.color}
+          bgColor={this.state.bgColor}
+          preloaderTop={this.state.preloaderTop}
+          handleChange={this.handleChange}
+        />
 
-        <HoldMyUi
-          when={this.state.change}
-          preloader="Gif"
-          gifSrc="https://i.pinimg.com/originals/a4/f2/cb/a4f2cb80ff2ae2772e80bf30e9d78d4c.gif"
-          color="red"
-          bgColor="black"
-          disableScroll={true}
-        >
-          <h1>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corrupti
-            amet eos odio tenetur, dignissimos vitae quaerat voluptatum omnis
-            fuga sequi porro fugiat eligendi cum animi nemo ab. Perspiciatis,
-            nesciunt aliquid.
-          </h1>
-          <h1>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corrupti
-            amet eos odio tenetur, dignissimos vitae quaerat voluptatum omnis
-            fuga sequi porro fugiat eligendi cum animi nemo ab. Perspiciatis,
-            nesciunt aliquid.
-          </h1>
-          <h1>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corrupti
-            amet eos odio tenetur, dignissimos vitae quaerat voluptatum omnis
-            fuga sequi porro fugiat eligendi cum animi nemo ab. Perspiciatis,
-            nesciunt aliquid.
-          </h1>
-        </HoldMyUi>
+        <main>
+          <div className="row">
+            <div className="col m6">
+              <h3>Code</h3>
+              <CodeBlock {...this.state} />
+            </div>
+            <div className="col m6">
+              <h3>Preview</h3>
+              {this.state.preloader && (
+                <HoldMyUi
+                  when={this.state.loading}
+                  preloader={this.state.preloader}
+                  color={this.state.color}
+                  bgColor={this.state.bgColor}
+                  opacity={(this.state.opacity * 0.01).toFixed(1)}
+                  preloaderTop={this.state.preloaderTop + "%"}
+                >
+                  <ContentBox />
+                </HoldMyUi>
+              )}
+            </div>
+          </div>
+        </main>
       </div>
     );
   }
