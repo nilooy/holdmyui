@@ -41,9 +41,24 @@ export default class Preloader extends React.Component {
     this.cssLoader = this.props.cssLoader;
   }
 
-  render() {
-    const ComponentToRender = Components[this.preloader];
+  state = {
+    preloader: this.props.preloader,
+    color: this.props.color
+  };
 
-    return <ComponentToRender color={this.color} gifSrc={this.gifSrc} />;
+  static getDerivedStateFromProps(props, state) {
+    let update = {};
+
+    if (props.preloader !== state.preloader) update.preloader = props.preloader;
+
+    if (props.color !== state.color) update.color = props.color;
+
+    return Object.keys(update).length ? update : null;
+  }
+
+  render() {
+    const ComponentToRender = Components[this.state.preloader];
+
+    return <ComponentToRender color={this.state.color} gifSrc={this.gifSrc} />;
   }
 }

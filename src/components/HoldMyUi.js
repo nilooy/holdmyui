@@ -16,7 +16,7 @@ class HoldMyUi extends React.Component {
     this.bgColor = this.props.bgColor || "white";
     this.zIndex = this.props.zIndex || "999999";
     this.cursor = this.props.cursor || "wait";
-    this.opacity = this.props.opacity || ".8";
+    this.opacity = this.props.opacity || ".7";
     this.preloaderTop = this.props.preloaderTop || "20%";
     this.padding = this.props.padding || "20px";
     this.type = this.props.type || "absolute";
@@ -25,19 +25,34 @@ class HoldMyUi extends React.Component {
     this.disableScroll = this.props.disableScroll;
   }
 
-  componentDidMount() {
-    console.log(this.padding);
-  }
-
-  state = { shouldHide: this.props.when || true };
+  state = {
+    shouldHide: this.props.when || true,
+    preloader: this.props.preloader,
+    color: this.props.color || "#000",
+    bgColor: this.props.bgColor || "#fff"
+  };
 
   static getDerivedStateFromProps(props, state) {
-    if (props.when === "undefined") return { shouldHide: true };
+    let update = {};
+
+    // props.map((item, index) => {});
+
+    if (props.when === "undefined") update.shouldHide = true;
+
     if (props.when !== state.shouldHide) {
-      return { shouldHide: props.when };
+      update.shouldHide = props.when;
     }
 
-    return null;
+    if (props.preloader && props.preloader !== state.preloader) {
+      update.preloader = props.preloader;
+    }
+
+    if (props.color && props.color !== state.color) update.color = props.color;
+
+    if (props.bgColor && props.bgColor !== state.bgColor)
+      update.bgColor = props.bgColor;
+
+    return Object.keys(update).length ? update : null;
   }
 
   preloaderContainer = () => (
@@ -46,13 +61,13 @@ class HoldMyUi extends React.Component {
         position: "absolute",
         left: "50%",
         transform: "translateX(-50%)",
-        top: this.preloaderTop
+        top: this.props.preloaderTop || "40"
       }}
     >
-      {this.preloader && (
+      {this.state.preloader && (
         <Preloader
-          preloader={this.preloader}
-          color={this.color}
+          preloader={this.state.preloader}
+          color={this.state.color}
           gifSrc={this.gifSrc}
         />
       )}
@@ -100,12 +115,11 @@ class HoldMyUi extends React.Component {
             width: "100%",
             height: "100%",
             zIndex: this.zIndex,
-            opacity: this.opacity,
             cursor: this.cursor,
-            backgroundColor: this.bgColor,
+            backgroundColor: this.state.bgColor,
             transition: this.transition,
             visibility: this.state.shouldHide ? "visible" : "hidden",
-            opacity: this.state.shouldHide ? this.opacity : 0
+            opacity: this.state.shouldHide ? this.props.opacity || 0.7 : 0
           }}
         >
           {!this.disablePreloader && this.preloaderContainer()}
