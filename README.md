@@ -6,7 +6,7 @@
 
 [![NPM](https://img.shields.io/npm/v/holdmyui.svg)](https://www.npmjs.com/package/holdmyui) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-## [DEMO](https://theprogboy.github.io/holdmyui/)
+## [DEMO](https://nilooy.github.io/holdmyui/)
 
 ## Install
 
